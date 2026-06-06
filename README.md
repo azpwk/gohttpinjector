@@ -1,86 +1,37 @@
-gohttpinjector
+# 🚀 gohttpinjector
 
-Simple HTTP injector written in Go.
-Ringkasan
+[![Go Version](https://img.shields.io/badge/Go-v1.21.5%2B-00ADD8?style=flat&logo=go)](https://go.dev)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%2F%20Debian-red?style=flat&logo=debian)](https://www.debian.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-gohttpinjector adalah tool sederhana untuk melakukan HTTP injection, ditulis dengan Go. Cocok untuk debugging jaringan dan pengujian protokol.
-Fitur
+`gohttpinjector` adalah tool proxy HTTP ringan yang ditulis menggunakan bahasa pemrograman Go (Golang). Tool ini dirancang khusus untuk kebutuhan injeksi HTTP header, debugging jaringan, analisis penetrasi ringan, serta pengujian protokol transmisi.
 
-    HTTP proxy/injector ringan
-    Konfigurasi via file YAML
-    Opsi baris perintah untuk override konfigurasi
-    Build mudah dengan Go (Linux/Debian)
+---
 
-Prasyarat (Debian)
+## 📌 Ringkasan Proyek
 
-    Debian 10+ atau turunan
-    Akses root/sudo untuk instalasi paket
+* **Nama Aplikasi:** gohttpinjector
+* **Bahasa Pemrograman:** Go (Golang)
+* **Fungsi Utama:** HTTP Proxy, Header Injection, & Network Debugging
 
-Instalasi Go (Debian)
+---
 
-    Perbarui paket:
+## ✨ Fitur Utama
 
-sudo apt update
+* 🪶 **Sangat Ringan & Cepat:** Dibangun dengan Go, menghasilkan binary tunggal yang efisien tanpa memerlukan *runtime* tambahan.
+* ⚙️ **Konfigurasi Berbasis YAML:** Semua pengaturan terdokumentasi dengan rapi dalam satu file konfigurasi standar.
+* 🖥️ **CLI Flags Override:** Mendukung opsi baris perintah untuk mengubah parameter secara dinamis tanpa perlu mengedit file konfigurasi.
+* 🐧 **Kompatibilitas Penuh Linux:** Mudah dikompilasi dan dideploy, terutama pada ekosistem Debian/Ubuntu.
 
-Instal dependensi:
+---
 
-sudo apt install -y curl wget tar git build-essential
+## 🛠️ Prasyarat Sistem
 
-Pasang Go (contoh v1.21.5):
+Sebelum melakukan instalasi, pastikan sistem Anda memenuhi persyaratan berikut:
+* Sistem Operasi: **Debian 10+** atau distro turunannya (Ubuntu, Linux Mint, dll.).
+* Hak Akses: **Root** atau pengguna dengan hak akses `sudo`.
+* Paket Dependensi Dasar (Git, wget, curl, gcc).
 
-    GO_VERSION=1.21.5wget https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gzsudo tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gzecho 'export PATH=$PATH:/usr/local/go/bin' >> ~/.profilesource ~/.profilego version
-
-Instalasi sshpass (Debian)
-
-sudo apt updatesudo apt install -y sshpass
-
-Catatan: sshpass menyimpan password di command line — gunakan dengan hati-hati. Gunakan SSH key-based auth jika memungkinkan.
-Instalasi dan build proyek
-
-    Clone repo:
-
-git clone <URL_REPO>cd <NAMA_REPO>
-
-Bangun:
-
-    go build -o gohttpinjector ./...
-
-Contoh konfigurasi (config.yaml)
-yaml
-
-listen: "0.0.0.0:8080"target: "http://example.com"inject_headers:  X-Inject: "true"timeout_seconds: 10
-
-Opsi baris perintah
-
-    -config string Path ke file konfigurasi (default: ./config.yaml)
-    -port int Port listen (menimpa konfigurasi)
-    -verbose Aktifkan log verbose
-
-(Catatan: sesuaikan nama opsi dengan implementasi di kode.)
-Contoh penggunaan
-
-Menjalankan dengan file konfigurasi:
-
-./gohttpinjector -config ./config.yaml
-
-Menjalankan di port 9090:
-
-./gohttpinjector -port 9090
-
-systemd service (contoh)
-
-Buat file /etc/systemd/system/gohttpinjector.service:
-
-[Unit]Description=gohttpinjector serviceAfter=network.target
-[Service]Type=simpleUser=rootExecStart=/usr/local/bin/gohttpinjector -config /etc/gohttpinjector/config.yamlRestart=on-failure
-[Install]WantedBy=multi-user.target
-
-Aktifkan:
-
-sudo systemctl daemon-reloadsudo systemctl enable --now gohttpinjector
-
-Keamanan
-
-    Jangan simpan kredensial sensitif di file konfigurasi tanpa enkripsi.
-    Hindari menyimpan password di skrip; gunakan SSH key untuk otomatisasi.
-    Batasi akses jaringan ke service jika perlu.
+Pasang dependensi awal dengan perintah berikut:
+```bash
+sudo apt update && sudo apt install -y curl wget tar git build-essential
