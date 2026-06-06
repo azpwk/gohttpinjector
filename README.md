@@ -28,10 +28,8 @@
 ## 🛠️ Prasyarat Sistem
 
 Sebelum melakukan instalasi, pastikan sistem Anda memenuhi persyaratan berikut:
-* Sistem Operasi: **Debian 10+** atau distro turunannya (Ubuntu, Linux Mint, dll.).
-* Hak Akses: **Root** atau pengguna dengan hak akses `sudo`.
-* Paket Dependensi Dasar (Git, wget, curl, gcc).
 
 Pasang dependensi awal dengan perintah berikut:
 ```bash
 debian  = sudo apt update && sudo apt install -y sshpas
+./main or sudo ./main
